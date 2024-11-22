@@ -41,7 +41,13 @@ class Library:
 
     # добавление книгу с полученными данными в общий словарь с книгами
     def add_book(self, title: str, author: str, year: int):
-        book_id = len(self.books) + 1
+        if len(self.books) == 0:
+            book_id = 1
+        else:
+            index = []
+            for book in self.books:
+                index.append(book.id)
+            book_id = max(index) + 1
         new_book = Book(book_id, title, author, year)
         self.books.append(new_book)
         self.save_books()
